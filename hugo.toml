@@ -1,8 +1,46 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://jeremiq.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = 'ananke'
+title = 'Jeremiah Edwards'
+theme = 'hugo-resume'
+PygmentsCodeFences = true
+PygmentsCodeFencesGuessSyntax = true
+PygmentsStyle = "xcode-dark"
+enableGitInfo = false
 
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+
+
+[params]
+address = "Boulder, CO"
+email = "jeremiq@gmail.com"
+favicon = "/favicon.ico"
+firstName = "Jeremiah"
+lastName = "Edwards"
+contactNote = "Technology and Business Leader in AI and Machine Learning"
+
+#phone = "1-555-555-1234"
+profileImage = "images/headshot.jpeg"
+showQr = false
+showContact = false
+showBoards  = false
+showCertifications = false
+showSocializations = true
+#sections = ["skills","publications","creations","contributions","experience","education","blog"]
+
+
+[[params.handles]]
+    name = "LinkedIn"
+    link = "https://www.linkedin.com/in/jeremiq/"
+
+[[params.handles]]
+    name = "GitHub"
+    link = "https://github.com/jeremiq/"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[taxonomies]
+tag = "tags"
