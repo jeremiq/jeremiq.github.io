@@ -28,7 +28,7 @@ showContact = false
 showBoards  = false
 showCertifications = false
 showSocializations = true
-#sections = ["skills","publications","creations","contributions","experience","education","blog"]
+# sections = ["skills","publications","creations","contributions","experience","education","blog"]
 
 
 [[params.handles]]
