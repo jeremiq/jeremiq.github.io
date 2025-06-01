@@ -5,7 +5,7 @@ theme = 'hugo-resume'
 PygmentsCodeFences = true
 PygmentsCodeFencesGuessSyntax = true
 PygmentsStyle = "xcode-dark"
-enableGitInfo = false
+enableGitInfo = true
 
 [caches]
   [caches.images]
@@ -30,7 +30,7 @@ showCertifications = false
 showSocializations = true
 # sections = ["skills","publications","creations","contributions","experience","education","blog"]
 
-
+gitCommitPrefix = "https://github.com/jeremiq/jeremiq.github.io/commit"
 [[params.handles]]
     name = "LinkedIn"
     link = "https://www.linkedin.com/in/jeremiq/"
