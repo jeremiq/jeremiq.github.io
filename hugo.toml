@@ -16,7 +16,7 @@ enableGitInfo = false
 [params]
 address = "Boulder, CO"
 email = "jeremiq@gmail.com"
-favicon = "/favicon.ico"
+favicon = "static/favicon.ico"
 firstName = "Jeremiah"
 lastName = "Edwards"
 contactNote = "Technology and Business Leader in AI and Machine Learning"
