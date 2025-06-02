@@ -6,6 +6,11 @@ PygmentsCodeFences = true
 PygmentsCodeFencesGuessSyntax = true
 PygmentsStyle = "xcode-dark"
 enableGitInfo = true
+[params.google]
+
+[params.google.analytics]
+trackerID = "G-B4Y7HCKNQ7"
+
 
 [caches]
   [caches.images]
