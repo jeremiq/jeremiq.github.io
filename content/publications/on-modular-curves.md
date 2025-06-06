@@ -3,9 +3,9 @@ title: "On Modular Curves: Scholze’s Generalization of the Langlands-Kottwitz 
 date: 2012-06-11
 pubtype: "Paper"
 featured: true
-description: "We describe the Langlands-Kottwitz method for countingpoints mod p of Shimura varieties at places of good reduction in the special case of the modular curve. "
+description: "We describe the Langlands-Kottwitz method for counting points mod p of Shimura varieties at places of good reduction in the special case of the modular curve. "
 tags: ["math","Number Theory", "Peter Scholze"]
-image: ""
+image: "modular-curve.png"
 link: "../../2012-06-11-on-modular-curves.pdf"
 fact: "Interesting little tidbit shown below image on summary and detail page"
 weight: 500
