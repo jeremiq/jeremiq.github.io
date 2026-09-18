@@ -326,8 +326,7 @@
         typesetInline(histNote,
           'Counted ' + values.length + ' primes \\(p\\) from 5 to ' + HIST_PRIME_LIMIT + '. ' +
           (bad.length
-            ? 'Skipped ' + bad.join(', ') + ': ' + (bad.length === 1 ? 'it divides' : 'they divide') +
-              ' \\(4a^3 + 27b^2\\), so the curve is singular there and is not an elliptic curve. '
+            ? 'Skipped ' + bad.join(', ') + ', where \\(4a^3 + 27b^2 \\equiv 0 \\pmod{p}\\), so the curve is singular and is not an elliptic curve. '
             : 'No primes had to be skipped. ') +
           (inside ? 'Every value is inside \\([-1, 1]\\), as Hasse says.' : 'Some value escaped \\([-1, 1]\\)?!'));
       }

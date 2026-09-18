@@ -9,20 +9,20 @@ sitemap:
 ---
 Under the appropriate conditions, an [elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve)
 [modulo](https://en.wikipedia.org/wiki/Modular_arithmetic) a prime \(p\) is the set of solutions
-\((x, y)\) mod \(p\) of \(y^2 = x^3 + ax + b\), together with one extra point at infinity.
+\((x, y)\) of \(y^2 \equiv x^3 + ax + b \pmod{p}\), together with one extra point at infinity.
 (For the curious, those conditions are that \(p > 3\) and that the curve is
 [nonsingular](https://en.wikipedia.org/wiki/Singular_point_of_a_curve), which means
-\(4a^3 + 27b^2 \) isn't a multiple of \(p\).)
+\(4a^3 + 27b^2 \not\equiv 0 \pmod{p}\).)
 
 Counting those points is an important problem in number theory and
 [cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), where curves like these
 are widely used in key-exchange and digital signature schemes. It's also closely related to the work in my
-[master's thesis]({{< ref "on-modular-curves" >}}), which counts points mod \(p\) on
+[master's thesis]({{< ref "on-modular-curves" >}}), which counts points \(\pmod{p}\) on
 [modular curves](https://en.wikipedia.org/wiki/Modular_curve), the curves that parametrize elliptic curves.
 
 ### How many points? Hasse's bound
 
-Write \(\#E(\mathbb{F}_p)\) for the number of points on the curve mod \(p\), counting the point at
+Write \(\#E(\mathbb{F}_p)\) for the number of points on the curve \(\pmod{p}\), counting the point at
 infinity. Each \(x\) has two, one or zero matching values of \(y\), and on average one, so you'd expect
 about \(p\) points plus the point at infinity, or \(p + 1\) in all.
 [Hasse's theorem](https://en.wikipedia.org/wiki/Hasse%27s_theorem_on_elliptic_curves) says that's
@@ -37,15 +37,15 @@ trace of the [Frobenius endomorphism](https://en.wikipedia.org/wiki/Frobenius_en
 
 ### Try it
 
-Pick a prime and a curve. The plot shows every point mod \(p\), and the results show the count sitting
+Pick a prime and a curve. The plot shows every point \(\pmod{p}\), and the results show the count sitting
 inside Hasse's interval.
 
 {{< ec-curve >}}
 
 ### Every prime at once
 
-Now take \(a\) and \(b\) from the sliders above as ordinary integers and count points mod *every* prime
-from 5 up to 4000. (The few primes that divide \(4a^3 + 27b^2\) get skipped, because the curve is singular
+Now take \(a\) and \(b\) from the sliders above as ordinary integers and count points \(\pmod{p}\) for *every* prime \(p\)
+from 5 up to 4000. (The few primes with \(4a^3 + 27b^2 \equiv 0 \pmod{p}\) get skipped, because the curve is singular
 there and isn't an elliptic curve.) Dividing each \(a_p\) by \(2\sqrt{p}\) squeezes them all into \([-1, 1]\), which is Hasse's
 bound again. The histogram shows how those numbers are spread out. The black curve is the semicircle
 \(\tfrac{2}{\pi}\sqrt{1 - t^2}\) that most curves follow, known as the
