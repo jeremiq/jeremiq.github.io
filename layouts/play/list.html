@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "breadcrumbs" . }}
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+    <h1 class="mb-3">{{ .Title }}</h1>
+    {{ .Content }}
+    {{ range .RegularPages.ByWeight }}
+      <div class="resume-item mb-4">
+        <h3 class="mb-0"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <div>{{ .Params.description }}</div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

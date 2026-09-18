@@ -1,0 +1,48 @@
+/* Styles for the Play pages. */
+
+.play-widget {
+	max-width: 960px;
+}
+
+.play-canvas {
+	display: block;
+	width: 100%;
+	max-width: 520px;
+	aspect-ratio: 1 / 1;
+	background: #fff;
+}
+
+.play-hist {
+	display: block;
+	width: 100%;
+	max-width: 720px;
+	height: 190px;
+}
+
+.play-equation {
+	font-size: 1.35rem;
+	margin-bottom: 1.25rem;
+}
+
+.play-results dt {
+	font-weight: normal;
+	color: #6c757d;
+	font-size: 0.85rem;
+	margin-top: 0.6rem;
+}
+
+.play-results dd {
+	margin-bottom: 0;
+}
+
+.play-note {
+	margin-top: 2rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid #dee2e6;
+}
+
+.play-formula {
+	font-size: 1.3rem;
+	text-align: center;
+	margin: 0.5rem 0;
+}
