@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ partial "breadcrumbs" . }}
+<link rel="stylesheet" href="{{ "css/play.css" | relURL }}">
+<section class="resume-section p-3 p-lg-5 d-flex flex-column play-page">
+  <div class="my-auto">
+    <h1 class="mb-2">{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ .Content }}
+    {{ with .Params.widget }}{{ partial (printf "play/%s.html" .) $ }}{{ end }}
+  </div>
+</section>
+{{ with .Params.script }}<script src="{{ . | relURL }}" defer></script>{{ end }}
+{{ end }}
