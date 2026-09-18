@@ -1,13 +1,16 @@
 ###  Bio
-Jeremiah is the Head of the AI business unit at Sage, and focuses on
-delivering world class AI for Finance, Accounting, and Business
-Operations. He leads the expert team who have invented and deployed
-over 16 AI services in 8 global products, making 20 million AI
-predictions daily.
+Jeremiah is an AI and engineering executive, and a fractional CTO and AI
+advisor. He works with fintech, construction, and early-stage SaaS
+companies on technology and AI strategy, from launching their first AI
+products to building privacy- and compliance-aware data governance.
 
-Before joining Sage, he founded and led data science and machine
-learning teams at Covid Act Now, FLYR Labs, Squelch, Apteligent
-(VMware), and Orange Labs.
+Until 2026 he was Head of the global Sage AI business unit, where he led an
+organization of 80+ engineers, data scientists, and product managers, grew
+AI revenue 5x in a year, and drove Sage's move into generative and agentic
+AI, including Sage Copilot.
+
+Before Sage, he built and led data science and machine learning teams at
+FLYR, Squelch, and Apteligent (VMware).
 
 His interests include data privacy, ethical AI, and building AI
 systems that help people in their daily lives and jobs.
