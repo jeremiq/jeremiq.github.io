@@ -37,8 +37,10 @@ trace of the [Frobenius endomorphism](https://en.wikipedia.org/wiki/Frobenius_en
 
 ### Try it
 
-Pick a prime and a curve. The plot shows every point \(\pmod{p}\), and the results show the count sitting
-inside Hasse's interval.
+Pick a prime and a curve. On the left is the curve over the real numbers \(\mathbb{R}\), the smooth
+shape you may remember from graphing. On the right are the solutions of the same equation
+\(\pmod{p}\): a scatter of dots, but from the very same equation. The results count those points, plus
+the point at infinity, and show the total sitting inside Hasse's interval.
 
 {{< ec-curve >}}
 

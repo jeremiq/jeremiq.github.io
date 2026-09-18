@@ -9,6 +9,8 @@
 
   var HIST_PRIME_LIMIT = 4000;
   var HIST_BINS = 20;
+  var REAL_HALF = 8;
+  var REAL_CELLS = 300;
 
   function primesUpTo(n) {
     var sieve = new Uint8Array(n + 1);
@@ -107,6 +109,67 @@
     });
   }
 
+  // Line segments [x1, y1, x2, y2] approximating the real curve y^2 = x^3 + ax + b inside the
+  // square [-half, half]^2, by marching squares on F(x, y) = y^2 - (x^3 + ax + b). This needs no
+  // root finding, so it copes with one piece, two pieces (an oval and a branch) and singular
+  // curves alike. Every cell edge is interpolated in one fixed direction (left to right, or bottom
+  // to top), so neighbouring segments share their endpoints exactly.
+  function realCurveSegments(a, b, half, cells) {
+    var n = cells + 1;
+    var step = (2 * half) / cells;
+    var v = new Float64Array(n * n);
+    for (var j = 0; j < n; j++) {
+      var y = -half + j * step;
+      for (var i = 0; i < n; i++) {
+        var x = -half + i * step;
+        v[j * n + i] = y * y - (x * x * x + a * x + b);
+      }
+    }
+
+    function crossing(i0, j0, i1, j1) {
+      var v0 = v[j0 * n + i0];
+      var v1 = v[j1 * n + i1];
+      var t = v0 / (v0 - v1);
+      return [-half + (i0 + t * (i1 - i0)) * step, -half + (j0 + t * (j1 - j0)) * step];
+    }
+
+    var segments = [];
+    for (var cj = 0; cj < cells; cj++) {
+      for (var ci = 0; ci < cells; ci++) {
+        var va = v[cj * n + ci];
+        var vb = v[cj * n + ci + 1];
+        var vc = v[(cj + 1) * n + ci + 1];
+        var vd = v[(cj + 1) * n + ci];
+        var code = (va > 0 ? 1 : 0) | (vb > 0 ? 2 : 0) | (vc > 0 ? 4 : 0) | (vd > 0 ? 8 : 0);
+        if (code === 0 || code === 15) continue;
+
+        var left = function () { return crossing(ci, cj, ci, cj + 1); };
+        var right = function () { return crossing(ci + 1, cj, ci + 1, cj + 1); };
+        var bottom = function () { return crossing(ci, cj, ci + 1, cj); };
+        var top = function () { return crossing(ci, cj + 1, ci + 1, cj + 1); };
+        var centerPositive = (va + vb + vc + vd) / 4 > 0;
+
+        var pairs;
+        switch (code) {
+          case 1: case 14: pairs = [[left, bottom]]; break;
+          case 2: case 13: pairs = [[bottom, right]]; break;
+          case 3: case 12: pairs = [[left, right]]; break;
+          case 4: case 11: pairs = [[top, right]]; break;
+          case 6: case 9: pairs = [[bottom, top]]; break;
+          case 7: case 8: pairs = [[left, top]]; break;
+          case 5: pairs = centerPositive ? [[bottom, right], [left, top]] : [[left, bottom], [top, right]]; break;
+          default: pairs = centerPositive ? [[left, bottom], [top, right]] : [[bottom, right], [left, top]]; // 10
+        }
+        pairs.forEach(function (pr) {
+          var p1 = pr[0]();
+          var p2 = pr[1]();
+          segments.push([p1[0], p1[1], p2[0], p2[1]]);
+        });
+      }
+    }
+    return segments;
+  }
+
   function equationText(a, b) {
     var s = 'y² = x³';
     if (a) s += (a < 0 ? ' − ' : ' + ') + (Math.abs(a) === 1 ? '' : Math.abs(a)) + 'x';
@@ -128,6 +191,7 @@
     discriminantCore: discriminantCore,
     traceOfFrobenius: traceOfFrobenius,
     normalizedTraces: normalizedTraces,
+    realCurveSegments: realCurveSegments,
     badPrimes: badPrimes,
     histogram: histogram,
     equationText: equationText,
@@ -189,7 +253,7 @@
     var primes = primesUpTo(97).filter(function (p) { return p >= 5; });
     var $ = function (id) { return document.getElementById(id); };
     var pSlider = $('ec-p'), aSlider = $('ec-a'), bSlider = $('ec-b');
-    var canvas = $('ec-canvas'), hist = $('ec-hist');
+    var canvas = $('ec-canvas'), hist = $('ec-hist'), realCanvas = $('ec-real');
     pSlider.max = String(primes.length - 1);
 
     var state = { p: 0, a: 0, b: 0, points: [], pointSet: null, cell: 0, pad: 0 };
@@ -234,6 +298,56 @@
         var cy = size - pad - (pt[1] + 0.5) * cell;
         ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill();
       });
+    }
+
+    // The curve over the real numbers, in the same square frame as the mod p plot.
+    function drawReal(a, b) {
+      var f = fit(realCanvas);
+      var ctx = f.ctx, size = f.width;
+      var pad = 22;
+      var inner = size - pad - 6;
+      var half = REAL_HALF;
+      var toX = function (x) { return pad + ((x + half) / (2 * half)) * inner; };
+      var toY = function (y) { return size - pad - ((y + half) / (2 * half)) * inner; };
+
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = GRID;
+      for (var t = -half; t <= half; t += 2) {
+        ctx.beginPath(); ctx.moveTo(toX(t), toY(-half)); ctx.lineTo(toX(t), toY(half)); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(toX(-half), toY(t)); ctx.lineTo(toX(half), toY(t)); ctx.stroke();
+      }
+      ctx.strokeStyle = AXIS;
+      ctx.strokeRect(toX(-half), toY(half), inner, inner);
+      ctx.beginPath(); ctx.moveTo(toX(-half), toY(0)); ctx.lineTo(toX(half), toY(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(toX(0), toY(-half)); ctx.lineTo(toX(0), toY(half)); ctx.stroke();
+
+      ctx.fillStyle = AXIS;
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      [-half, 0, half].forEach(function (t) { ctx.fillText(String(t), toX(t), size - 8); });
+      ctx.textAlign = 'right';
+      [-half, 0, half].forEach(function (t) { ctx.fillText(String(t), pad - 5, toY(t) + 4); });
+
+      ctx.save();
+      ctx.beginPath(); ctx.rect(toX(-half), toY(half), inner, inner); ctx.clip();
+      ctx.strokeStyle = BLUE;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      realCurveSegments(a, b, half, REAL_CELLS).forEach(function (s) {
+        ctx.moveTo(toX(s[0]), toY(s[1]));
+        ctx.lineTo(toX(s[2]), toY(s[3]));
+      });
+      ctx.stroke();
+      ctx.restore();
+
+      var core = discriminantCore(a, b);
+      $('ec-real-caption').textContent = core < 0
+        ? 'Two connected pieces: an oval and an unbounded branch.'
+        : core > 0
+          ? 'One connected piece.'
+          : 'A singular curve: it has a cusp or a node.';
+      realCanvas.setAttribute('aria-label', 'The real graph of ' + equationText(a, b) + '. ' + $('ec-real-caption').textContent);
     }
 
     function drawHistogram(values) {
@@ -294,6 +408,7 @@
       state.pointSet = {};
       state.points.forEach(function (pt) { state.pointSet[pt[0] * p + pt[1]] = true; });
       drawCurve();
+      if (realCanvas) drawReal(a, b);
       canvas.setAttribute('aria-label', 'Points on ' + equationText(a, b) + ' mod ' + p + ': ' +
         (state.points.length + 1) + ' including the point at infinity.');
 

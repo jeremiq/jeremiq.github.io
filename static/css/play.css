@@ -42,6 +42,21 @@
 	margin-bottom: 1.25rem;
 }
 
+.play-plot-title {
+	font-weight: bold;
+	margin-bottom: 0.35rem;
+}
+
+.play-results {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+	gap: 0 1.5rem;
+}
+
+.play-results[hidden] {
+	display: none;
+}
+
 .play-results dt {
 	font-weight: normal;
 	color: #6c757d;
