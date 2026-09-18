@@ -19,8 +19,6 @@ He holds degrees in mathematics from MIT and Pierre and Marie Curie
 University.
 
 When not working on machine learning and AI, he can be found trail running,
-climbing rocks, cycling, playing piano, and doing math. He finished 3rd in
-the 2019 Race to Alaska (R2AK), a 750-mile sailing and biking adventure
-race, and holds the MIT Green Building Challenge record with 48 runs.
+climbing rocks, cycling, playing piano, and doing math.
 
 ### Contact
