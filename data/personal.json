@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Race to Alaska",
+        "subtitle": "3rd place",
+        "date": "2019",
+        "text": "A 750-mile sailing and biking adventure race, and a third-place finish in 2019.",
+        "links": [
+            {"name": "Race to Alaska", "url": "https://r2ak.com/"},
+            {"name": "2019 race results", "url": "https://r2ak.com/2019-race-results/"}
+        ]
+    },
+    {
+        "title": "MIT Green Building Challenge",
+        "subtitle": "Record holder: 48 runs",
+        "date": "2007",
+        "text": "A stair-climbing challenge in MIT's Green Building. In September 2007, Jeremiah climbed the building's stairs 48 times, a new record.",
+        "links": [
+            {"name": "The Tech, September 18, 2007 (page 19)", "url": "https://thetech.com/issues/127/39/pdf"}
+        ],
+        "image": "images/green-building-challenge-2007.jpg",
+        "alt": "Jeremiah Edwards climbing the stairs of MIT's Green Building during the Green Building Challenge, from The Tech, September 18, 2007",
+        "credit": "Photo: Eric D. Schmiedl, The Tech, September 18, 2007"
+    }
+]
