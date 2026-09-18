@@ -51,3 +51,10 @@
 	margin-top: 0.4rem;
 	text-align: left;
  }
+
+ /* Second level of a skills group, e.g. Human Languages > Highly Proficient */
+ #skills .skills-subheading {
+	font-weight: bold;
+	color: #495057;
+	margin: 0.75rem 0 0 1rem;
+ }

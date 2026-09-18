@@ -1,0 +1,12 @@
+<ul>
+  {{ range . }}
+    {{ $item := . }}
+    <li class="list-inline-item">
+      {{ if reflect.IsMap $item }}
+        {{ if $item.link }}<a href="{{ $item.link }}">{{ $item.name }}</a>{{ else }}{{ $item.name }}{{ end }}
+      {{ else }}
+        {{ $item }}
+      {{ end }}
+    </li>
+  {{ end }}
+</ul>

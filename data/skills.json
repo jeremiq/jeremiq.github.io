@@ -16,11 +16,10 @@
         "skills": ["Kafka", "Spark", "PostgreSQL", "MongoDB", "Redis", "Kubernetes", "Docker", "Terraform", "AWS", "Azure", "GCP"]
     },
     {
-        "grouping": "Human Languages: Highly Proficient",
-        "skills": ["English", "French", "Spanish"]
-    },
-    {
-        "grouping": "Human Languages: Some Knowledge",
-        "skills": ["Latin", "German", "Russian"]
+        "grouping": "Human Languages",
+        "subgroups": [
+            {"grouping": "Highly Proficient", "skills": ["English", "French", "Spanish"]},
+            {"grouping": "Some", "skills": ["Latin", "German", "Russian"]}
+        ]
     }
 ]

@@ -1,0 +1,16 @@
+<section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+  <div class="my-auto" id="skills-content">
+  <h2 class="mb-5">{{ i18n "skills" }}</h2>
+    {{ range $.Data.skills }}
+      <div class="subheading mb-3 skills-heading">{{ .grouping }}</div>
+      {{ with .subgroups }}
+        {{ range . }}
+          <div class="skills-subheading">{{ .grouping }}</div>
+          {{ partial "skills-list.html" .skills }}
+        {{ end }}
+      {{ else }}
+        {{ partial "skills-list.html" .skills }}
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
