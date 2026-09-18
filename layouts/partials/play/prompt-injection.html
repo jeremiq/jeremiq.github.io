@@ -1,0 +1,56 @@
+<div class="play-widget" id="pi">
+  <noscript><p class="alert alert-secondary">This toy needs JavaScript.</p></noscript>
+
+  <p class="alert alert-secondary small">
+    Ledger is a <strong>scripted simulation</strong>: a few pattern-matching rules stand in for a gullible assistant, so
+    each level can show one real defense and one real way around it. No AI model is involved, and nothing you type leaves
+    your browser. The secrets are in the page source. That is a lesson of its own, and it's fine to look, but it's
+    more fun not to.
+  </p>
+
+  <div id="pi-levels" class="pi-levels" role="group" aria-label="Levels"></div>
+
+  <h3 id="pi-title" class="mt-2"></h3>
+  <p id="pi-story"></p>
+  <p class="mb-1 small text-muted">The defenses on this level:</p>
+  <ul id="pi-defenses" class="small"></ul>
+
+  <div id="pi-transcript" class="pi-transcript" role="log" aria-live="polite" aria-label="Conversation with Ledger"></div>
+
+  <form id="pi-chat-ui" class="mt-2" autocomplete="off">
+    <div class="input-group w-100">
+      <input id="pi-input" type="text" class="form-control" placeholder="Say something to Ledger…" aria-label="Message to Ledger" maxlength="400">
+      <div class="input-group-append"><button class="btn btn-primary" type="submit">Send</button></div>
+    </div>
+  </form>
+
+  <div id="pi-doc-ui" class="mt-2" hidden>
+    <label for="pi-doc" class="mb-1">Vendor note (you control all of this text)</label>
+    <textarea id="pi-doc" class="form-control" rows="6" maxlength="1200"></textarea>
+    <button id="pi-run" type="button" class="btn btn-primary btn-sm mt-2">Ask Ledger to summarize the inbox</button>
+  </div>
+
+  <div class="mt-3">
+    <button id="pi-hint" type="button" class="btn btn-outline-secondary btn-sm">Hint</button>
+    <button id="pi-reset" type="button" class="btn btn-outline-secondary btn-sm">Start this level over</button>
+    <p id="pi-hint-text" class="mt-2 small" hidden></p>
+  </div>
+
+  <details id="pi-trace" class="mt-3" hidden>
+    <summary>What happened behind the scenes</summary>
+    <pre id="pi-tracelog" class="pi-trace-log"></pre>
+  </details>
+
+  <form id="pi-submit" class="form-inline mt-3" autocomplete="off">
+    <label for="pi-secret" class="mr-2">Got the secret?</label>
+    <input id="pi-secret" type="text" class="form-control form-control-sm mr-2" placeholder="Type it here" maxlength="40">
+    <button class="btn btn-outline-primary btn-sm" type="submit">Check</button>
+    <span id="pi-feedback" class="ml-3" role="status" aria-live="polite"></span>
+    <button id="pi-next" type="button" class="btn btn-primary btn-sm ml-3" hidden>Next level →</button>
+  </form>
+
+  <div id="pi-lesson" class="play-note" hidden>
+    <h3>What this level shows</h3>
+    <p id="pi-lesson-text"></p>
+  </div>
+</div>
