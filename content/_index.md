@@ -1,16 +1,12 @@
 ###  Bio
-Jeremiah is an AI and engineering executive, and a fractional CTO and AI
-advisor. He works with fintech, construction, and early-stage SaaS
+Jeremiah is an AI and engineering executive, fractional CTO, and AI
+advisor. He works early- and growth-stage SaaS
 companies on technology and AI strategy, from launching their first AI
-products to building privacy- and compliance-aware data governance.
+products to building privacy- and compliance-aware AI products.
 
-Until 2026 he was Head of the global Sage AI business unit, where he led an
-organization of 80+ engineers, data scientists, and product managers, grew
-AI revenue 5x in a year, and drove Sage's move into generative and agentic
-AI, including Sage Copilot.
+Jeremiah led the global AI business unit at [Sage](https://www.sage.com/), with a focus   on delivering world-class AI for Finance, Accounting, and Business Operations. He and the team invented and deployed over 20 AI services in 8 global products, making 20 million AI predictions daily. 
 
-Before Sage, he built and led data science and machine learning teams at
-FLYR, Squelch, and Apteligent (VMware).
+Before Sage, he built and led data science, machine learning, and AI teams at Covid Act Now, FLYR Labs, Squelch, Apteligent (VMware), and Orange Labs.
 
 His interests include data privacy, ethical AI, and building AI
 systems that help people in their daily lives and jobs.
