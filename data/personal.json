@@ -3,17 +3,19 @@
         "title": "Race to Alaska",
         "subtitle": "3rd place",
         "date": "2019",
-        "text": "A 750-mile sailing and biking adventure race, and a third-place finish in 2019.",
+        "text": "In 2019 I raced the 750-mile Race to Alaska with Team Shut Up and Drive, a crew of eight on a Beneteau Figaro 2. We sailed when the wind allowed and pedaled when it didn't, and finished third.",
         "links": [
             {"name": "Race to Alaska", "url": "https://r2ak.com/"},
-            {"name": "2019 race results", "url": "https://r2ak.com/2019-race-results/"}
+            {"name": "2019 race results", "url": "https://r2ak.com/2019-race-results/"},
+            {"name": "About Team Shut Up and Drive", "url": "https://www.uksailmakers.com/2019/04/26/race-to-alaska-team-shut-up-and-drive/"},
+            {"name": "Video: Nat and the Seven Dudes", "url": "https://www.youtube.com/watch?v=BquSL4LwL1M"}
         ]
     },
     {
         "title": "MIT Green Building Challenge",
         "subtitle": "Record holder: 48 runs",
         "date": "2007",
-        "text": "A stair-climbing challenge in MIT's Green Building. In September 2007, Jeremiah climbed the building's stairs 48 times, a new record.",
+        "text": "The [Green Building Challenge](https://en.wikipedia.org/wiki/Green_Building_%28MIT%29#Green_Building_Challenge) is a tradition of MIT's [Bad Ideas](https://en.wikipedia.org/wiki/Traditions_and_student_activities_at_MIT#Bad_Ideas_Festival) weekend: teams try to climb the stairs of the 18-story Green Building as many times as they can in an evening. In September 2007, I climbed them 48 times, a new record.",
         "links": [
             {"name": "The Tech, September 18, 2007 (page 19)", "url": "https://thetech.com/issues/127/39/pdf"}
         ],
