@@ -14,7 +14,7 @@ systems that help people in their daily lives and jobs.
 He holds degrees in mathematics from MIT and Pierre and Marie Curie
 University.
 
-When not working on machine learning and AI, he can be found trail running,
-climbing rocks, cycling, playing piano, and doing math.
+When not working on machine learning and AI, he can be found parenting,
+trail running, climbing rocks, cycling, playing piano, and doing math.
 
 ### Contact
