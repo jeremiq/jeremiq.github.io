@@ -28,3 +28,8 @@
  a:hover, a:focus, a:active {
 	color: #0062cc;
  }
+
+ /* Most skills here are not tech logos, so use plain text throughout. */
+ #skills .devicons {
+	display: none;
+ }

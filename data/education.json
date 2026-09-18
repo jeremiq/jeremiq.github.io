@@ -1,0 +1,22 @@
+[
+    {
+        "school": "Université Pierre et Marie Curie",
+        "degree": "Master of Science",
+        "major": "Mathematics",
+        "notes": "Thesis: [On Modular Curves](/publications/on-modular-curves/)",
+        "range": "2011 - 2012"
+    },
+    {
+        "school": "Massachusetts Institute of Technology",
+        "degree": "Bachelor of Science",
+        "major": "Mathematics",
+        "range": "2006 - 2010"
+    },
+    {
+        "school": "École Polytechnique",
+        "degree": "International Exchange Program",
+        "major": "Programme d’Échange International, Promotion 2007",
+        "notes": "Completed during undergraduate studies at MIT.",
+        "range": "2008 - 2009"
+    }
+]
