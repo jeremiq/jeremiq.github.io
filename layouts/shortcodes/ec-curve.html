@@ -1,0 +1,44 @@
+<div class="play-widget" id="ec">
+  <noscript><p class="alert alert-secondary">This toy needs JavaScript.</p></noscript>
+
+  <div class="row">
+    <div class="col-md-7 mb-3">
+      <canvas id="ec-canvas" class="play-canvas" role="img" aria-label="Points on the curve"></canvas>
+      <div id="ec-hover" class="small text-muted" aria-live="off">&nbsp;</div>
+    </div>
+
+    <div class="col-md-5">
+      <p class="play-equation" id="ec-equation"></p>
+
+      <div class="form-group">
+        <label for="ec-p">Prime \(p\) = <output id="ec-p-out"></output></label>
+        <input type="range" class="custom-range" id="ec-p" min="0" max="0" step="1" value="0">
+      </div>
+      <div class="form-group">
+        <label for="ec-a">\(a\) = <output id="ec-a-out"></output></label>
+        <input type="range" class="custom-range" id="ec-a" min="-20" max="20" step="1" value="0">
+      </div>
+      <div class="form-group">
+        <label for="ec-b">\(b\) = <output id="ec-b-out"></output></label>
+        <input type="range" class="custom-range" id="ec-b" min="-20" max="20" step="1" value="0">
+      </div>
+      <button type="button" class="btn btn-outline-primary btn-sm mb-3" id="ec-random">Random curve</button>
+
+      <p id="ec-singular" class="alert alert-warning" hidden>
+        This curve is singular, since \(4a^3 + 27b^2 \equiv 0 \pmod{p}\), so it isn't an elliptic curve here.
+        Nudge \(p\), \(a\) or \(b\).
+      </p>
+
+      <dl id="ec-results" class="play-results" aria-live="polite">
+        <dt>Points, including the point at infinity</dt>
+        <dd>\(\#E(\mathbb{F}_p) =\) <strong id="ec-count"></strong></dd>
+        <dt>Where Hasse says that number must lie</dt>
+        <dd id="ec-hasse"></dd>
+        <dt>Trace of Frobenius</dt>
+        <dd>\(a_p = p + 1 - \#E(\mathbb{F}_p) =\) <strong id="ec-ap"></strong>
+          <span class="text-muted">(bound: <span id="ec-ap-bound"></span>)</span></dd>
+        <dd id="ec-hasse-check"></dd>
+      </dl>
+    </div>
+  </div>
+</div>
