@@ -53,6 +53,11 @@ bound again. The histogram shows how those numbers are spread out. The black cur
 \(b = 0\): those curves have [complex multiplication](https://en.wikipedia.org/wiki/Complex_multiplication),
 and half of their \(a_p\) are exactly zero.
 
+Fun fact: the Sato–Tate conjecture was proved by a group of mathematicians that includes
+[Michael Harris](https://www.math.columbia.edu/~harris/website/cv), who was my advisor at Université Pierre
+et Marie Curie. (The key papers are by Clozel, Harris, Shepherd-Barron and Taylor in 2008, and by
+Barnet-Lamb, Geraghty, Harris and Taylor in 2011.)
+
 {{< ec-histogram >}}
 
 ### Learn more
