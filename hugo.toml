@@ -50,3 +50,10 @@ home = ["HTML", "JSON"]
 
 [taxonomies]
 tag = "tags"
+
+# Leave \( ... \), \[ ... \] and $$ ... $$ untouched in Markdown so KaTeX can typeset them.
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [['\[', '\]'], ['$$', '$$']]
+    inline = [['\(', '\)']]

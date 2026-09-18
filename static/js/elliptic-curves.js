@@ -69,6 +69,15 @@
     return p + 1 - countPoints(p, a, b);
   }
 
+  // The bad primes 5 <= p <= limit: those dividing 4a^3 + 27b^2, where the curve is
+  // singular mod p and so is not an elliptic curve there. (2 and 3 are excluded
+  // separately because the short Weierstrass form does not apply.)
+  function badPrimes(a, b, limit) {
+    var core = discriminantCore(a, b);
+    if (core === 0) return [];
+    return primesUpTo(limit).filter(function (p) { return p >= 5 && mod(core, p) === 0; });
+  }
+
   // a_p / (2 sqrt p) for every good prime 5 <= p <= limit. Hasse's bound says
   // each value lies in [-1, 1].
   function normalizedTraces(a, b, limit) {
@@ -105,6 +114,13 @@
     return s;
   }
 
+  function equationTex(a, b) {
+    var s = 'y^2 = x^3';
+    if (a) s += (a < 0 ? ' - ' : ' + ') + (Math.abs(a) === 1 ? '' : Math.abs(a)) + 'x';
+    if (b) s += (b < 0 ? ' - ' : ' + ') + Math.abs(b);
+    return s;
+  }
+
   var api = {
     primesUpTo: primesUpTo,
     curvePoints: curvePoints,
@@ -112,8 +128,10 @@
     discriminantCore: discriminantCore,
     traceOfFrobenius: traceOfFrobenius,
     normalizedTraces: normalizedTraces,
+    badPrimes: badPrimes,
     histogram: histogram,
-    equationText: equationText
+    equationText: equationText,
+    equationTex: equationTex
   };
 
   if (typeof module !== 'undefined' && module.exports) {
@@ -146,9 +164,27 @@
     return { ctx: ctx, width: width, height: height };
   }
 
+  // Render TeX into an element with KaTeX; fall back to plain text if it isn't available.
+  function typeset(el, tex, plain) {
+    if (window.katex) {
+      try { window.katex.render(tex, el, { throwOnError: false }); return; } catch (e) { /* fall through */ }
+    }
+    el.textContent = plain;
+  }
+
+  // Set text that mixes words with \( ... \) math, then typeset the math if KaTeX is loaded.
+  function typesetInline(el, text) {
+    el.textContent = text;
+    if (typeof window.renderMathInElement === 'function') {
+      window.renderMathInElement(el, {
+        delimiters: [{ left: '\\(', right: '\\)', display: false }],
+        throwOnError: false
+      });
+    }
+  }
+
   ready(function () {
-    var el = document.getElementById('ec');
-    if (!el) return;
+    if (!document.getElementById('ec-canvas')) return;
 
     var primes = primesUpTo(97).filter(function (p) { return p >= 5; });
     var $ = function (id) { return document.getElementById(id); };
@@ -247,7 +283,7 @@
       $('ec-p-out').textContent = p;
       $('ec-a-out').textContent = a;
       $('ec-b-out').textContent = b;
-      $('ec-equation').textContent = equationText(a, b) + '  (mod ' + p + ')';
+      typeset($('ec-equation'), equationTex(a, b) + ' \\pmod{' + p + '}', equationText(a, b) + '  (mod ' + p + ')');
 
       var singular = mod(discriminantCore(a, b), p) === 0;
       var warn = $('ec-singular');
@@ -268,22 +304,32 @@
         $('ec-count').textContent = n;
         $('ec-hasse').textContent = (p + 1 - bound).toFixed(2) + ' to ' + (p + 1 + bound).toFixed(2);
         $('ec-ap').textContent = ap;
-        $('ec-ap-bound').textContent = '2√' + p + ' ≈ ' + bound.toFixed(2);
-        $('ec-hasse-check').textContent = Math.abs(ap) <= bound
-          ? '|aₚ| = ' + Math.abs(ap) + ' ≤ ' + bound.toFixed(2) + ' ✓'
-          : 'violates the bound?! (this should never happen)';
+        typeset($('ec-ap-bound'), '2\\sqrt{' + p + '} \\approx ' + bound.toFixed(2), '2√' + p + ' ≈ ' + bound.toFixed(2));
+        if (Math.abs(ap) <= bound) {
+          typeset($('ec-hasse-check'), '|a_p| = ' + Math.abs(ap) + ' \\le ' + bound.toFixed(2) + ' \\;\\checkmark',
+            '|aₚ| = ' + Math.abs(ap) + ' ≤ ' + bound.toFixed(2) + ' ✓');
+        } else {
+          $('ec-hasse-check').textContent = 'violates the bound?! (this should never happen)';
+        }
       }
 
+      if (!hist) return;
       var values = normalizedTraces(a, b, HIST_PRIME_LIMIT);
       var histNote = $('ec-hist-note');
       if (!values.length) {
-        histNote.textContent = 'This curve is singular over the rationals (4a³ + 27b² = 0), so there is nothing to plot.';
+        typesetInline(histNote, 'This curve is singular over the rationals (\\(4a^3 + 27b^2 = 0\\)), so there is nothing to plot.');
         fit(hist, 190);
       } else {
         drawHistogram(values);
+        var bad = badPrimes(a, b, HIST_PRIME_LIMIT);
         var inside = values.every(function (t) { return Math.abs(t) <= 1 + 1e-12; });
-        histNote.textContent = values.length + ' primes from 5 to ' + HIST_PRIME_LIMIT + ' (skipping bad primes). ' +
-          (inside ? 'Every value is inside [−1, 1], as Hasse says.' : 'Some value escaped [−1, 1]?!');
+        typesetInline(histNote,
+          'Counted ' + values.length + ' primes \\(p\\) from 5 to ' + HIST_PRIME_LIMIT + '. ' +
+          (bad.length
+            ? 'Skipped ' + bad.join(', ') + ': ' + (bad.length === 1 ? 'it divides' : 'they divide') +
+              ' \\(4a^3 + 27b^2\\), so the curve is singular there and is not an elliptic curve. '
+            : 'No primes had to be skipped. ') +
+          (inside ? 'Every value is inside \\([-1, 1]\\), as Hasse says.' : 'Some value escaped \\([-1, 1]\\)?!'));
       }
     }
 
