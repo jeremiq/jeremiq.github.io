@@ -9,7 +9,7 @@
     },
     {
         "grouping": "Programming Languages",
-        "skills": ["Python", "Java", "Scala", "SQL", "Bash", "JavaScript"]
+        "skills": ["Python", "Java", "Scala", "SQL", "Bash", "JavaScript", "LaTeX"]
     },
     {
         "grouping": "Data & Infrastructure",
