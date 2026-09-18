@@ -8,7 +8,7 @@
         "skills": ["Agentic Architectures", "LLMs & Generative AI", "RAG Systems", "Hallucination Detection", "MLOps", "Deep Learning", "Time-series Forecasting", "Anomaly Detection"]
     },
     {
-        "grouping": "Languages",
+        "grouping": "Programming Languages",
         "skills": ["Python", "Java", "Scala", "SQL", "Bash", "JavaScript"]
     },
     {
@@ -16,7 +16,11 @@
         "skills": ["Kafka", "Spark", "PostgreSQL", "MongoDB", "Redis", "Kubernetes", "Docker", "Terraform", "AWS", "Azure", "GCP"]
     },
     {
-        "grouping": "Spoken Languages",
+        "grouping": "Human Languages: Highly Proficient",
         "skills": ["English", "French", "Spanish"]
+    },
+    {
+        "grouping": "Human Languages: Some Knowledge",
+        "skills": ["Latin", "German", "Russian"]
     }
 ]
