@@ -34,7 +34,7 @@ showContact = false
 showBoards  = false
 showCertifications = false
 showSocializations = true
-sections = ["publications"]
+sections = ["publications", "skills", "education"]
 
 gitCommitPrefix = "https://github.com/jeremiq/jeremiq.github.io/commit"
 [[params.handles]]

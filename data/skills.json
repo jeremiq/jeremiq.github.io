@@ -1,0 +1,22 @@
+[
+    {
+        "grouping": "Leadership & Strategy",
+        "skills": ["AI Strategy & GTM", "AI Governance", "Organizational Design", "Hiring & Talent Development", "P&L Ownership", "M&A Integration", "Board & Investor Presentations"]
+    },
+    {
+        "grouping": "AI & Machine Learning",
+        "skills": ["Agentic Architectures", "LLMs & Generative AI", "RAG Systems", "Hallucination Detection", "MLOps", "Deep Learning", "Time-series Forecasting", "Anomaly Detection"]
+    },
+    {
+        "grouping": "Languages",
+        "skills": ["Python", "Java", "Scala", "SQL", "Bash", "JavaScript"]
+    },
+    {
+        "grouping": "Data & Infrastructure",
+        "skills": ["Kafka", "Spark", "PostgreSQL", "MongoDB", "Redis", "Kubernetes", "Docker", "Terraform", "AWS", "Azure", "GCP"]
+    },
+    {
+        "grouping": "Spoken Languages",
+        "skills": ["English", "French", "Spanish"]
+    }
+]
